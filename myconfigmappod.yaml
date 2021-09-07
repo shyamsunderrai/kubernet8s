@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: myconfigmappod
+spec:
+  containers:
+  - name: myappcontainer
+    image: busybox
+    command: ['sh' , '-c', "echo $(MY_VAR) is not $(MY_VAR2) && sleep 3600"] 
+    env:
+    - name: MY_VAR
+      valueFrom:
+        configMapKeyRef:
+          name: myconfigmap
+          key: myKey
+    - name: MY_VAR2
+      valueFrom:
+        configMapKeyRef:
+          name: myconfigmap
+          key: myKey2 
+
