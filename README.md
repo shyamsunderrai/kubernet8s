@@ -13,4 +13,8 @@ kubectl apply -f myconfigmap.yaml
 ```bash
 kubectl apply -f myconfigmappod.yaml
 ```
-
+### Validate if the variables named MY_VAR and MY_VAR2 took effect
+```bash
+kubectl logs myconfigmappod 
+```
+_Above command should display the values specified in data_
