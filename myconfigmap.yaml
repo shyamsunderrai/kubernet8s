@@ -4,5 +4,5 @@ kind: ConfigMap
 metadata:
   name: myconfigmap
 data:
-  myKey: shyam_key
-  myKey2: rai_key
+  myKey: "This is the desired value for myKey"
+  myKey2: "This is obviously the second value, for myKey2"

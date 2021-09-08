@@ -18,3 +18,9 @@ kubectl apply -f myconfigmappod.yaml
 kubectl logs myconfigmappod 
 ```
 _Above command should display the values specified in data_
+
+## Creating a pod that can read config values using volume and volume mounts
+```bash
+kubectl apply -f myconfigvolumespod.yaml 
+```
+#### The sample volumeMount contains the name of the actual volume (can be whatever we named it within volumes). Then volumes should actually contain the name of the config map we created, hence, "myconfigmap" in our case.
