@@ -57,3 +57,26 @@ kubectl apply -f mypodissecure.yaml
 ```
 ##### You can now validate that the container won't run and logs for your pod would show error 
 ##### To fix the error, just swap the runAsUser with 2000 as value and fsGroup with 3000 as the value
+
+## Assigning resources (using keyword resources->requests||limits)
+```bash
+kubectl apply -f myresources.yaml
+```
+##### Above command should help create a container with specific CPU/Memory resources, to validate, we can run the following and it can display the limits in json output.
+```bash
+kubectl describe pod myresourcepod
+``` 
+
+## Create a secret and validate if you can see it
+```bash
+kubectl apply -f mysecret.yaml
+kubectl get secret mysecret && kubectl describe secret mysecret 
+```
+##### The first command will let us create the secret and second command helps find the type and description of the secret. To validate if the secret is readable, run the following command
+```bash
+kubectl apply -f mysecretValidate.yaml
+```
+**To ensure that the value was indeed read, retrieve the logs for the pod, which is the name of the pod**
+```bash
+kubectl logs mysecretvalidator 
+```

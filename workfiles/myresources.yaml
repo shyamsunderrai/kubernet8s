@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myresourcepod
+spec:  
+  containers:
+    - name: myresourcecontainer
+      image: busybox
+      command: ['sh']
+      args: ['-c', "echo Hello All && sleep 3600"]
+      resources:
+        requests:
+          memory: "64Mi"
+          cpu: "250m"
+        limits:
+          memory: "128Mi"
+          cpu: "500m"
