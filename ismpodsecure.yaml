@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: ismypodsecure
+spec:
+  containers:
+  - name: mycontainer
+    image: busybox
+    command: ['sh', '-c', "cat /message/message.txt && sleep 3600"]
+    volumeMounts:
+    - name: localvol
+      mountpath: /message
+  volumes:
+  -  name: localvol
+     hostPath:
+       path: /etc/message         

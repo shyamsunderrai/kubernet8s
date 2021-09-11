@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: configMap
+metadata: 
+  name: configVal
+data:
+  userid: 2001
+  groupid: 3001
