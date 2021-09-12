@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myserviceaccount
+spec:
+  serviceAccountName: myserviceaccount
+  containers:
+    - name: myservicepod
+      image: busybox
+      command: ['sh', '-c', "echo Hello Service Account && sleep 3600"]     
