@@ -80,3 +80,16 @@ kubectl apply -f mysecretValidate.yaml
 ```bash
 kubectl logs mysecretvalidator 
 ```
+## Service accounts
+**Are created to communicate with Kubernetes api-services with limited privileges assigned for these service accounts**
+```bash
+kubectl create serviceaccount myserviceaccount
+```
+##### To validate, just execute the following
+```bash
+kubectl apply -f myserviceaccount.yaml
+```
+
+
+
+
