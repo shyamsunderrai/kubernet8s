@@ -109,6 +109,13 @@ curl $(kubectl get pod fruit-service-pod -o=custom-columns=IP:.status.podIP --no
 kubectl get pod fruit-service-pod -o=custom-columns=IP:.status.podIP --no-headers
 ```
 
+## Liveness and Readiness Probe
+```bash
+kubectl apply -f livenesspod.yaml
+kubectl apply -f readinesspod.yaml
+```
+**Pretty self explannatory, liveness checks if the container is ready and readiness checks if the service is ready and service in the second container i.e, nginx**
+
 
 
 
