@@ -90,6 +90,27 @@ kubectl create serviceaccount myserviceaccount
 kubectl apply -f myserviceaccount.yaml
 ```
 
+## MultiContainer Pod "Workout2"
+**Objective of this workout is to spin up two containers in the same pod** 
+```bash
+kubectl apply -f fruit-service-ambassador-config.yaml
+kubectl apply -f fruit-service.yaml
+```
+**Since pod is a single entity, haproxy config "listen http-in" and the relevant entries "server server1 127.0.0.1:8775 ..." stats that haproxy will listen to the localhost on port 8775 (internally), since the only container port available by default is via haproxy pod exposed on containerport 80**
+
+##### To quickly test this, we can run the following OR the second command if you are using minikube
+```bash
+kubectl apply -f fruite-service-check.yaml
+curl $(kubectl get pod fruit-service-pod -o=custom-columns=IP:.status.podIP --no-headers):80
+```
+
+##### This just retrieves the IP address of the pod
+```bash
+kubectl get pod fruit-service-pod -o=custom-columns=IP:.status.podIP --no-headers
+```
+
+
+
 
 
 
