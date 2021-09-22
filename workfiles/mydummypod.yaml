@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mydummypod
+spec:
+  containers:
+    - name: mydummy
+      image: busybox
+      command: ['/bin/sh', '-c', "echo Hello World && sleep 3600"]        
