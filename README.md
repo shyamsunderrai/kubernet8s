@@ -116,6 +116,31 @@ kubectl apply -f readinesspod.yaml
 ```
 **Pretty self explannatory, liveness checks if the container is ready and readiness checks if the service is ready and service in the second container i.e, nginx**
 
+## Ingesting both types of probes in an existing image 
+```bash
+kubectl apply -f candy-service-probes.yaml
+kubectl logs candy-service 
+```
+**if you open the file you can see that either of the probes are introduce using httpGet method for both liveness and readiness. Run the second command to see the output**
+
+## Debugging Pointers 
+- Logs
+```bash
+kubectl get logs <pod-name>
+```
+
+- To get the definition of a pod into a file named "output.yaml"
+```bash
+kubectl get pod <pod-name> -n <namespace> -o yaml > output.yaml
+```
+
+- To list all pods in all namespaces and then finding the most resource intesnsive pod
+```bash
+kubectl get pods --all-namespaces
+kubectl top pods --all-namespaces
+```
+
+
 
 
 
