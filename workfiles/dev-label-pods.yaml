@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: devlabel-pod
+  labels:
+    appcat: devpop
+    environ: development
+spec:
+  containers:
+    - name: devcod
+      image: busybox
+      command: ['/bin/sh','-c',"echo This is Dev Pod && sleep 3600"]

@@ -140,6 +140,20 @@ kubectl get pods --all-namespaces
 kubectl top pods --all-namespaces
 ```
 
+## How to use labels and list pods/containers based on assigned labels
+- Create the pods 
+```bash
+kubectl apply -f dev-label-pods.yaml
+kubectl apply -f prod-label-pods.yaml
+```
+
+- Listing the objects based on selectors specified by "-l"
+```bash
+kubectl get pods -l environ=production
+kubectl get pods -l environ=development
+kubectl get pods -l 'environ in (production,development)'
+```
+** To list environments individually based on actual ecosystem and using multiple selectors
 
 
 

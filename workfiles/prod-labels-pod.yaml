@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: prodlabel-pod
+  labels:
+    appcat: prodpop
+    environ: production
+spec:
+  containers:
+    - name: prodcod
+      image: busybox
+      command: ['/bin/sh','-c',"echo This is Prod Pod && sleep 3600"]
