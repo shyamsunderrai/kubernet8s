@@ -153,8 +153,55 @@ kubectl get pods -l environ=production
 kubectl get pods -l environ=development
 kubectl get pods -l 'environ in (production,development)'
 ```
-** To list environments individually based on actual ecosystem and using multiple selectors
+**To list environments individually based on actual ecosystem and using multiple keys specified under labels like 'environ' in this example**
 
+## Deployments 
+**One of the key topics from a future perspective. Deployment is the specification of the state one wants for their deployments/pods/containers, for instance one can desire to keep 3 replicas of a pod, deployment enables that**
+
+- Create the deployment with replication factor of 3. The second command will help you find out the number of pods running after the deployment
+```bash
+kubectl apply -f depoloyment-1.yaml
+kubectl get pods
+```
+
+- Check the desired, current state of your deployment
+```bash
+kubectl get deployments -o wide
+```
+
+- Deployments can be edited and immediately take effect after being edited
+```bash
+kubectl edit deployment nginx-deployment 
+kubectl get pods
+kubectl get deployments -o wide
+```
+
+## Performing rolling updates and reversions to deployments
+
+- Create a deployment. This is also going to create an nginx pod of image 1.7.5
+```bash
+kubectl apply -f deployments-rolling.yaml
+```
+
+- Check the state of deployments after the first initiation. Revision with a number is going to show more details about the pods within the deployment 
+```bash
+kubectl rollout history deployment/deployment-rolling 
+kubectl rollout history deployment/deployment-rolling --revision=1
+```
+
+- Performing an upgrade on the deployment image
+```bash
+kubectl set image deployment/deployment-rolling nginx=nginx:1.7.9
+kubectl rollout history deployment/deployment-rolling --revision=<5> //Last number from the history command. This will give details of the changes
+```
+
+- Performing a rollback
+```bash
+kubectl rollout undo deployment/deployment-rolling --to-revision=4 // Last value -1 to rever to older version
+kubectl rollout history deployment/deployment-rolling 
+```
+
+**Tip: kubectl get pods -w allows you to watch the state of a pod(s) as it changes**
 
 
 

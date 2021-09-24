@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-pod
+spec:
+  template:
+    spec:
+      containers:
+        - name: myshellcast
+          image: busybox
+          command: ['/bin/sh', '-c', "echo -n $(date); Hello From This K8 Cluster && 3600"]
+      restartPolicy: Never
+  backOffLimit: 4        
