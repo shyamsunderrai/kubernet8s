@@ -204,6 +204,29 @@ kubectl rollout history deployment/deployment-rolling
 **Tip: kubectl get pods -w allows you to watch the state of a pod(s) as it changes**
 
 
+## Workout 3
+**Prep work for hands-on of Deployment, rollout and rolling upgrade**
 
+- Apply the candy-deployment.yaml from "Workout3" folder, this is the prep work
+```bash
+kubectl apply -f candy-deployment.yaml
+```
 
+- Now try performing upgrade to the image linuxacademycontent/candy-service:3 
+```bash
+kubectl set image deployment/candy-deployment candy-ws=linuxacademycontent/candy-service:3
+kubectl rollout history deployment/candy-deployment --revision=1 // This will display the version of the app
+```
+**If you want to check the progress, you can run the the second command**
 
+- If done right, it is a possibility that the upgrade deployment might succeed, but the container might not succeed. Can be checked via
+```bash
+kubectl get pods // OR
+kubectl get deployments -o wide
+```
+
+- Try to roll back to the previous version. Either one of the options can be used.
+```bash
+kubectl rollout undo deployment/candy-deployment // OR
+kubectl rollout undo deployment/candy-deployment --to-revision=1
+```
