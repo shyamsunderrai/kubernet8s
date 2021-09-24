@@ -230,3 +230,21 @@ kubectl get deployments -o wide
 kubectl rollout undo deployment/candy-deployment // OR
 kubectl rollout undo deployment/candy-deployment --to-revision=1
 ```
+
+- Check the status of deployment
+```bash
+kubectl rollout status deployment/candy-deployment
+```
+
+## Cronjob
+
+- To deploy a cronjob and schedule an activity
+
+```bash
+kubectl apply -f cronjob.yaml
+```
+
+- To list the cronjobs. Pay close heed to the "ACTIVE" colum count and "LAST SCHEDULE" which should show the last execution and number of iterations
+```bash
+kubectl get cronjobs
+```
