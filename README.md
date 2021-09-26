@@ -248,3 +248,45 @@ kubectl apply -f cronjob.yaml
 ```bash
 kubectl get cronjobs
 ```
+
+## Services
+
+- Create a deployment to work with first. This should create 3 replicas for nginx 
+```bash
+kubectl apply -f service-deployment.yaml
+``` 
+
+- Create a service named "my-service" of type "ClusterIP" that tags with app named "nginx" as we used in our deployment
+```bash
+kubectl apply -f myu-service.yaml
+```
+
+- Assuming the deployment is successful, use the first command to list the newly created service and then the next one to list the end points
+```bash
+kubectl get svc // Short for services
+kubectl get ep // Short for endpoints OR
+kubectl get ep my-service // To list the endpoints as specified in my-service
+```
+
+- Another crucial service is "NodePort" which exposes the port and IP (if specified or auto allocated) for external world. I removed the ClusterIP service to ensure that there is no collission. 
+```bash
+kubectl apply -f my-nodeport.yaml
+``` 
+
+- Now list the Cluster IP allocated by the service "my-nodeport-service" listed under heading "CLUSTER-IP"
+```bash
+kubectl get svc
+curl <cluster-ip>:80
+```
+**I had some confusion figuring this out, so I used googles reference and used this command to figure out**
+```bash
+kubectl expose deployment/nginx-service-deployment --type="NodePort" --port=80 //This creates a service by the same name as deployment
+kubectl get svc
+kubectl get svc -o yaml nginx-service-deployment > <file>.yaml // Write it to a file to see what all is specified
+```
+
+
+
+ 
+
+
