@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: np-server-deployment
+spec:
+  replicas: 2
+  selector: 
+    matchLabels: 
+      app: np-server
+  template:
+    metadata:
+      labels:   
+        app: np-server
+    spec:
+      containers:
+        - name: np-server
+          image: nginx:1.7.9
+          ports:
+          - containerPort: 80        

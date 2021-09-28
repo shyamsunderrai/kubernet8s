@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: 
+  name: access-securenginxpod
+spec:
+  podSelector:
+    matchLabels:
+      app: secureapp
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - podSelector:
+        matchLables:
+          allow-access: "true"
+  ports:
+  - protocol: TCP
+    port: 80
+  
+  egress:            
+  - to:
+    - podSelector:
+        matchLables:
+          allow-access: "true"
+  ports:
+  - protocol: TCP
+    port: 80

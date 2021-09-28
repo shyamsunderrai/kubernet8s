@@ -285,6 +285,51 @@ kubectl get svc
 kubectl get svc -o yaml nginx-service-deployment > <file>.yaml // Write it to a file to see what all is specified
 ```
 
+## Network Policy
+**One of the prereqs is to install the networking policies as specified in kubernetes documentation https://kubernetes.io/docs/tasks/administer-cluster/declare-network-policy/**
+
+- Setup prerequisite for netowrk policy to work
+```bash
+curl -O ttps://docs.projectcalico.org/manifests/canal.yaml && kubectl apply -f canal.yml
+```
+
+- Create a pod (and/or) deployment which you'd want to access // This would be before network policy is implemented
+```bash
+kubectl apply -f securenginxpod.yaml 
+kubectl apply -f netpolicy-server-deployment
+```
+
+- Create a client to access the service(s) from 
+```bash
+kubectl apply -f insecure-client.yaml
+```
+
+- Get the IPs of the serving pod i.e. in our case it is either "securenginx" Or "np-server-deployment-???????". Note down the IP and run the second command to test out
+```bash
+kubectl get pods -o wide
+kubectl exec insecure-client-pod -- curl <ip of the np-server> // Should return the nginx welcome page
+```
+
+- Apply the network policy 
+```bash
+kubectl apply -f network-policy.yaml
+```
+
+**After this application, accessing the pods via curl, as used before, should fail or timeout**
+
+-- To fix this, we need to fix our client by adding the label within insecure-client-pod.yaml and redeploy
+
+
+
+
+
+
+
+
+
+
+
+
 
 
  
