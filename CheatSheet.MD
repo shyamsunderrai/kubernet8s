@@ -18,4 +18,4 @@ kubectl top node // To sort the biggest resource consuming node
 kubectl top pod // To sort and list largest resource consuming pod
 kubectl -n pluto describe deploy project-23-api | grep Liveness // Get deployment details to see if liveness exists
 kubectl -n namespace get ep // To list all the endpoints for deployments within a given namespace 
-```bash
+```
